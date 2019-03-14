@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         智慧树助手
-// @namespace    http://tampermonkey.net/
-// @version      0.1.1
-// @description  智慧树 自动处理弹框问题 自动下一节
+// @namespace    https://github.com/chenjr15/AutoTree
+// @version      0.1.2
+// @description  智慧树 自动处理弹框问题 自动下一节 操作随机延时
 // @author       Chenjr
 // @match        http://study.zhihuishu.com/learning/videoList*
 // @grant        none
+// @supportURL   https://github.com/chenjr15/AutoTree/README.md
+// @updateURL    https://github.com/chenjr15/AutoTree/raw/master/auto.user.js
 // ==/UserScript==
 var statusBoardOuter = $("<div class=\"headerMenuFixed\" id=\"statusBoardOuter\"> </div>");
 var infoBoard = $("<span id=\"infoboard\">this is info</span>");
@@ -46,7 +48,7 @@ function autoplay() {
 			var n = Math.floor(Math.random() * 10 % answers.size());
 			answers.get(n).firstElementChild.click();
             infoBoard.text("Click"+n);
-			setTimeout(closeBox, 700);
+			setTimeout(closeBox, 700+(Math.random() * 1000 ) %1000);
 		} else
 			// 进度条到底
 			if ($(".currentTime").text() == $(".duration").text()) {
